@@ -246,18 +246,66 @@ function calculatePhraseScore(text) {
 function analyzeStructure(text) {
   let score = 0;
 
+  // Check for listicle title patterns (very AI)
+  const listiclePattern = /^\d+\s+(ways|tips|steps|reasons|things|strategies|methods|tactics)\s+to/i;
+  if (listiclePattern.test(text)) {
+    score += 30; // Listicles are very AI-typical
+  }
+
   // Check for bullet points
   const bulletPattern = /^[•\-\*]\s/gm;
   const bulletCount = (text.match(bulletPattern) || []).length;
   if (bulletCount >= 3 && bulletCount <= 7) {
-    score += 25; // AI loves 3-7 bullets
+    score += 15; // AI loves 3-7 bullets
+  } else if (bulletCount > 20) {
+    score += 35; // Too many bullets = very AI
   }
 
-  // Check for numbered lists
-  const numberedPattern = /^\d+\.\s/gm;
+  // Check for numbered lists with escalating scoring
+  const numberedPattern = /^\d+[\/\.\)]\s/gm;
   const numberedCount = (text.match(numberedPattern) || []).length;
-  if (numberedCount >= 3) {
+  if (numberedCount >= 3 && numberedCount <= 5) {
+    score += 15;
+  } else if (numberedCount >= 6 && numberedCount <= 9) {
     score += 25;
+  } else if (numberedCount >= 10) {
+    score += 40; // 10+ numbered items is VERY AI-like
+  }
+
+  // Check for repeated special characters (→, •, etc.) - MAJOR AI indicator
+  const arrowCount = (text.match(/→/g) || []).length;
+  const bulletSymbolCount = (text.match(/[•▪▫]/g) || []).length;
+  const specialCharCount = arrowCount + bulletSymbolCount;
+
+  if (specialCharCount > 15) {
+    score += 35; // Excessive special chars = AI formatting
+  } else if (specialCharCount > 8) {
+    score += 20;
+  }
+
+  // Check for sub-structure uniformity (e.g., every numbered item has exactly 3 sub-bullets)
+  const lines = text.split('\n').filter(l => l.trim().length > 0);
+  const numberedItems = lines.filter(l => /^\d+[\/\.\)]/.test(l.trim()));
+
+  if (numberedItems.length >= 5) {
+    // Count sub-bullets after each numbered item
+    const subBulletCounts = [];
+    for (let i = 0; i < numberedItems.length; i++) {
+      const currentIndex = lines.indexOf(numberedItems[i]);
+      const nextIndex = i < numberedItems.length - 1 ? lines.indexOf(numberedItems[i + 1]) : lines.length;
+      const sectionLines = lines.slice(currentIndex + 1, nextIndex);
+      const subBullets = sectionLines.filter(l => l.trim().startsWith('→') || /^[•\-\*]/.test(l.trim()));
+      subBulletCounts.push(subBullets.length);
+    }
+
+    // Check if all sections have same number of sub-bullets (too perfect = AI)
+    if (subBulletCounts.length > 0) {
+      const firstCount = subBulletCounts[0];
+      const allSame = subBulletCounts.every(count => count === firstCount);
+      if (allSame && firstCount > 0) {
+        score += 40; // Perfect uniformity = VERY AI
+      }
+    }
   }
 
   // Check for perfect emoji placement (emoji at start of each paragraph)
@@ -370,16 +418,33 @@ function analyzeSentencePatterns(text) {
     score += 40;
   }
 
-  // Check for no typos (AI rarely makes typos)
+  // Check for very short bullet points (2-4 words each) - AI pattern
+  const lines = text.split('\n').filter(l => l.trim().length > 0);
+  const shortBullets = lines.filter(l => {
+    const trimmed = l.trim();
+    if (trimmed.startsWith('→') || /^[•\-\*]/.test(trimmed)) {
+      const words = trimmed.replace(/^[→•\-\*]\s*/, '').split(/\s+/).length;
+      return words >= 2 && words <= 4;
+    }
+    return false;
+  });
+
+  if (shortBullets.length > 10) {
+    score += 35; // Many ultra-short bullets = AI
+  } else if (shortBullets.length > 5) {
+    score += 20;
+  }
+
+  // Check for no typos (reduced weight - not as strong indicator)
   const commonTypos = /\b(teh|taht|thier|recieve|seperate|definately|occured)\b/gi;
   if (!commonTypos.test(text)) {
-    score += 30;
+    score += 15; // Reduced from 30
   }
 
   // AI rarely uses contractions in formal posts
   const contractions = text.match(/\b\w+\'(s|t|re|ve|ll|d|m)\b/g) || [];
   if (contractions.length === 0 && text.length > 200) {
-    score += 30;
+    score += 25; // Reduced from 30
   }
 
   return Math.min(score, 100);
@@ -407,11 +472,32 @@ function collectPatterns(phraseScore, structureScore, formatScore, styleScore, t
     patterns.push('Uniform writing style');
   }
 
+  // Check for listicle format
+  const listiclePattern = /^\d+\s+(ways|tips|steps|reasons|things|strategies|methods|tactics)\s+to/i;
+  if (listiclePattern.test(text)) {
+    patterns.push('Listicle format detected');
+  }
+
+  // Check for numbered list
+  const numberedPattern = /^\d+[\/\.\)]\s/gm;
+  const numberedCount = (text.match(numberedPattern) || []).length;
+  if (numberedCount >= 10) {
+    patterns.push('Extensive numbered list (10+ items)');
+  } else if (numberedCount >= 5) {
+    patterns.push('Numbered list format');
+  }
+
+  // Check for repeated special characters
+  const arrowCount = (text.match(/→/g) || []).length;
+  if (arrowCount > 15) {
+    patterns.push('Excessive arrow symbols (→)');
+  }
+
   // Additional specific patterns
   const bulletPattern = /^[•\-\*]\s/gm;
   const bulletCount = (text.match(bulletPattern) || []).length;
-  if (bulletCount >= 5) {
-    patterns.push('Extensive use of bullet points');
+  if (bulletCount >= 20) {
+    patterns.push('Excessive bullet points (20+)');
   }
 
   const hashtags = text.match(/#\w+/g) || [];
