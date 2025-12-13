@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - LinkedIn AI Post Detector</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #0a66c2;
+      margin-bottom: 10px;
+    }
+
+    .last-updated {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #0a66c2;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 18px;
+      color: #333;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-bottom: 15px;
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #0a66c2;
+    }
+
+    .highlight {
+      background: #e8f4fd;
+      padding: 15px;
+      border-left: 4px solid #0a66c2;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    a {
+      color: #0a66c2;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: December 13, 2024</p>
+
+    <div class="highlight">
+      <strong>TL;DR:</strong> This extension does NOT collect, store, transmit, or share any of your data. Everything happens locally in your browser. Zero data collection. Zero tracking. Zero external servers.
+    </div>
+
+    <h2>Introduction</h2>
+    <p>
+      LinkedIn AI Post Detector ("the Extension") is committed to protecting your privacy. This privacy policy explains how the Extension handles data and what permissions it requires to function.
+    </p>
+
+    <h2>Data Collection</h2>
+    <p>
+      <strong>The Extension does NOT collect any user data.</strong>
+    </p>
+    <p>
+      We do not collect, store, transmit, or share:
+    </p>
+    <ul>
+      <li>Personal information</li>
+      <li>LinkedIn account credentials</li>
+      <li>LinkedIn posts or content you analyze</li>
+      <li>Browsing history</li>
+      <li>Usage statistics or analytics</li>
+      <li>Any other form of user data</li>
+    </ul>
+
+    <h2>How It Works</h2>
+    <p>When you use the Extension to analyze a LinkedIn post:</p>
+    <ol>
+      <li>You manually select a post using the element picker</li>
+      <li>Text is extracted from the selected element in your browser</li>
+      <li>Analysis is performed <strong>entirely client-side</strong> using JavaScript</li>
+      <li>Results are displayed only to you in the popup</li>
+      <li><strong>No data is sent to external servers</strong></li>
+      <li>Nothing is stored after you close the popup (unless you enable history in settings)</li>
+    </ol>
+
+    <h2>Local Storage</h2>
+    <p>
+      The Extension uses Chrome's local storage only to save your preferences and settings:
+    </p>
+    <ul>
+      <li><strong>Settings:</strong> Your detection sensitivity, enabled methods, and display preferences</li>
+      <li><strong>Optional History:</strong> If you enable "Keep Analysis History" in settings, the last 10 analyses are stored <strong>locally on your device</strong></li>
+    </ul>
+    <p>
+      This data never leaves your device and can be cleared at any time through the settings page or by uninstalling the Extension.
+    </p>
+
+    <h2>Permissions Explained</h2>
+    <p>The Extension requests the following minimal permissions:</p>
+
+    <h3>activeTab</h3>
+    <p>
+      Allows the Extension to interact with the currently active LinkedIn tab when you click the extension icon. This is required to inject the element picker and extract text from the post you select.
+    </p>
+
+    <h3>storage</h3>
+    <p>
+      Allows the Extension to save your settings and preferences locally in your browser. No data is synced to external servers.
+    </p>
+
+    <h3>scripting</h3>
+    <p>
+      Allows the Extension to inject the element picker interface and analysis scripts into LinkedIn pages. This only happens when you activate the picker.
+    </p>
+
+    <h3>host_permissions (linkedin.com)</h3>
+    <p>
+      Limits the Extension to only work on LinkedIn.com. The Extension cannot access or interact with any other websites.
+    </p>
+
+    <h2>Third-Party Services</h2>
+    <p>
+      <strong>The Extension does not use any third-party services, APIs, or analytics tools.</strong>
+    </p>
+    <p>
+      All functionality is self-contained within the Extension code. There are no external API calls, no tracking pixels, no analytics libraries, and no connections to external servers.
+    </p>
+
+    <h2>LinkedIn Terms of Service</h2>
+    <p>
+      The Extension is designed to respect LinkedIn's Terms of Service:
+    </p>
+    <ul>
+      <li><strong>User-initiated only:</strong> No automatic scraping or data collection</li>
+      <li><strong>Publicly visible content:</strong> Only analyzes content already loaded and visible to you</li>
+      <li><strong>No bulk operations:</strong> Analyzes one post at a time, manually selected by you</li>
+      <li><strong>Equivalent to manual actions:</strong> Functionally similar to manually copying text and analyzing it yourself</li>
+    </ul>
+
+    <h2>Data Security</h2>
+    <p>
+      Since the Extension does not collect, transmit, or store any data externally, there are no data security risks associated with external servers or databases.
+    </p>
+    <p>
+      Your settings and optional history are stored locally using Chrome's secure storage API and are protected by your browser's security measures.
+    </p>
+
+    <h2>Children's Privacy</h2>
+    <p>
+      The Extension does not knowingly collect any information from anyone, including children under 13. The Extension does not collect data from any users.
+    </p>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+      We may update this privacy policy from time to time. Any changes will be reflected in the "Last updated" date at the top of this page. Continued use of the Extension after changes indicates acceptance of the updated policy.
+    </p>
+
+    <h2>Open Source</h2>
+    <p>
+      The Extension's source code is available for review. You can verify that the Extension does not collect or transmit data by reviewing the code yourself.
+    </p>
+
+    <h2>Your Rights</h2>
+    <p>
+      Since the Extension does not collect any personal data, there is no personal data to access, modify, or delete. You can:
+    </p>
+    <ul>
+      <li>Clear your settings by clicking "Reset to Defaults" in the settings page</li>
+      <li>Clear your analysis history (if enabled) through the settings page</li>
+      <li>Remove all Extension data by uninstalling the Extension</li>
+    </ul>
+
+    <h2>Disclaimer</h2>
+    <p>
+      This Extension provides estimations based on writing patterns and is not a definitive method for detecting AI-generated content. Results should be used for personal reference only and not as conclusive proof.
+    </p>
+    <p>
+      The Extension is for <strong>personal, educational use only</strong>. Use at your own discretion and risk.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you have questions or concerns about this privacy policy, please contact us at:
+    </p>
+    <p>
+      <a href="mailto:your-email@example.com">your-email@example.com</a>
+    </p>
+
+    <div class="footer">
+      <p>&copy; 2024 LinkedIn AI Post Detector. All rights reserved.</p>
+      <p>This extension is not affiliated with or endorsed by LinkedIn Corporation.</p>
+    </div>
+  </div>
+</body>
+</html>

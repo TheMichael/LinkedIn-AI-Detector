@@ -1,0 +1,51 @@
+# Chrome Extension Development
+*.pem
+*.crx
+*.zip
+
+# Node modules (if using build tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Generated icons (keep source SVG, ignore generated PNGs during development)
+# Uncomment if you want to ignore generated icons:
+# assets/icons/*.png
+
+# Screenshots and promotional materials
+screenshots/*.png
+promo/*.png
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Build output
+dist/
+build/
+
+# Test files
+test-results/
+coverage/

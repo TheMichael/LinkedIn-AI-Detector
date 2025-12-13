@@ -1,0 +1,32 @@
+IMPORTANT: Icon Files Required
+================================
+
+Before loading this extension in Chrome or submitting to the Chrome Web Store,
+you need to create three PNG icon files:
+
+Required files:
+- icon16.png (16x16 pixels)
+- icon48.png (48x48 pixels)
+- icon128.png (128x128 pixels)
+
+These files should be placed in this directory: assets/icons/
+
+How to create them:
+-------------------
+
+1. Use the provided icon.svg as the source design
+2. Convert using one of these methods:
+   - Online: https://cloudconvert.com/svg-to-png
+   - Python: python3 create-placeholder-icons.py (requires: pip install pillow)
+   - Node.js: node convert-icons.js (requires: npm install sharp)
+   - ImageMagick: see README.md for commands
+
+Temporary workaround:
+--------------------
+
+For testing purposes, you can create simple placeholder images:
+- Any 16x16, 48x48, and 128x128 PNG files will work
+- Use a solid color or simple design
+- Name them icon16.png, icon48.png, and icon128.png
+
+The extension will NOT load without these files!

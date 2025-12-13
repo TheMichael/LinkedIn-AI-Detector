@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn AI Post Detector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="title">LinkedIn AI Detector</h1>
+      <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
+    </div>
+
+    <!-- Initial State -->
+    <div id="initialState" class="state active">
+      <p class="description">Select a LinkedIn post to analyze its AI likelihood.</p>
+      <button id="selectPostBtn" class="primary-btn">Select Post to Analyze</button>
+    </div>
+
+    <!-- Selection Active State -->
+    <div id="selectionState" class="state">
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <p>Click on a LinkedIn post to analyze...</p>
+      </div>
+      <p class="hint">Press ESC to cancel</p>
+    </div>
+
+    <!-- Analyzing State -->
+    <div id="analyzingState" class="state">
+      <div class="loader"></div>
+      <p>Analyzing post...</p>
+    </div>
+
+    <!-- Results State -->
+    <div id="resultsState" class="state">
+      <div class="results-card">
+        <h2>Analysis Results</h2>
+
+        <!-- Likelihood Meter -->
+        <div class="likelihood-container">
+          <div class="likelihood-circle">
+            <div id="likelihoodValue" class="likelihood-value">0%</div>
+            <div id="likelihoodLabel" class="likelihood-label">AI Likelihood</div>
+          </div>
+        </div>
+
+        <!-- Confidence Level -->
+        <div id="confidenceSection" class="confidence-section">
+          <span class="confidence-label">Confidence:</span>
+          <span id="confidenceValue" class="confidence-value">Medium</span>
+        </div>
+
+        <!-- Detected Patterns -->
+        <div id="patternsSection" class="patterns-section">
+          <h3>Detected Patterns</h3>
+          <ul id="patternsList" class="patterns-list"></ul>
+        </div>
+
+        <!-- Breakdown (Collapsible) -->
+        <div id="breakdownSection" class="breakdown-section">
+          <button id="toggleBreakdown" class="breakdown-toggle">
+            Show Detailed Breakdown <span class="arrow">▼</span>
+          </button>
+          <div id="breakdownContent" class="breakdown-content">
+            <div class="breakdown-item">
+              <span class="breakdown-label">Phrases:</span>
+              <div class="breakdown-bar">
+                <div id="phrasesBar" class="breakdown-fill" style="width: 0%"></div>
+              </div>
+              <span id="phrasesValue" class="breakdown-value">0%</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-label">Structure:</span>
+              <div class="breakdown-bar">
+                <div id="structureBar" class="breakdown-fill" style="width: 0%"></div>
+              </div>
+              <span id="structureValue" class="breakdown-value">0%</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-label">Format:</span>
+              <div class="breakdown-bar">
+                <div id="formatBar" class="breakdown-fill" style="width: 0%"></div>
+              </div>
+              <span id="formatValue" class="breakdown-value">0%</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-label">Style:</span>
+              <div class="breakdown-bar">
+                <div id="styleBar" class="breakdown-fill" style="width: 0%"></div>
+              </div>
+              <span id="styleValue" class="breakdown-value">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analyze Another Button -->
+        <button id="analyzeAnotherBtn" class="primary-btn">Analyze Another Post</button>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="state">
+      <div class="error-icon">⚠️</div>
+      <p id="errorMessage" class="error-message"></p>
+      <button id="tryAgainBtn" class="primary-btn">Try Again</button>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <p>Results are estimations based on writing patterns, not definitive proof. For personal use only.</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

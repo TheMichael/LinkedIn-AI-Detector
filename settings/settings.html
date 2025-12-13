@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn AI Detector - Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LinkedIn AI Post Detector</h1>
+      <p class="subtitle">Settings & Preferences</p>
+    </header>
+
+    <main>
+      <!-- Sensitivity Section -->
+      <section class="settings-section">
+        <h2>Detection Sensitivity</h2>
+        <p class="description">Adjust how strict the AI detection algorithm should be.</p>
+
+        <div class="sensitivity-control">
+          <div class="slider-container">
+            <label class="slider-label">Low</label>
+            <input type="range" id="sensitivitySlider" min="1" max="3" value="2" step="1">
+            <label class="slider-label">High</label>
+          </div>
+          <div class="sensitivity-value">
+            Current: <strong id="sensitivityDisplay">Medium</strong>
+          </div>
+          <p class="hint">Low = More lenient (fewer false positives), High = Stricter (more detections)</p>
+        </div>
+      </section>
+
+      <!-- Detection Methods Section -->
+      <section class="settings-section">
+        <h2>Detection Methods</h2>
+        <p class="description">Choose which analysis methods to enable.</p>
+
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="enablePhrases" checked>
+            <span class="checkbox-text">
+              <strong>Phrase Analysis</strong>
+              <span class="method-desc">Detects common AI phrases and language patterns</span>
+            </span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="enableStructure" checked>
+            <span class="checkbox-text">
+              <strong>Structure Analysis</strong>
+              <span class="method-desc">Analyzes formatting, bullet points, and paragraph consistency</span>
+            </span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="enableFormat" checked>
+            <span class="checkbox-text">
+              <strong>Format Analysis</strong>
+              <span class="method-desc">Examines hashtag and emoji usage patterns</span>
+            </span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="enableStyle" checked>
+            <span class="checkbox-text">
+              <strong>Style Analysis</strong>
+              <span class="method-desc">Evaluates sentence uniformity and writing patterns</span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Display Preferences Section -->
+      <section class="settings-section">
+        <h2>Display Preferences</h2>
+        <p class="description">Customize what information is shown in analysis results.</p>
+
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="showBreakdown" checked>
+            <span class="checkbox-text">
+              <strong>Show Detailed Breakdown</strong>
+              <span class="method-desc">Display individual scores for each detection method</span>
+            </span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="showConfidence" checked>
+            <span class="checkbox-text">
+              <strong>Show Confidence Level</strong>
+              <span class="method-desc">Display the confidence rating (Low/Medium/High)</span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- History Section -->
+      <section class="settings-section">
+        <h2>Analysis History</h2>
+        <p class="description">Optionally keep a history of your recent analyses.</p>
+
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="keepHistory">
+            <span class="checkbox-text">
+              <strong>Keep Analysis History</strong>
+              <span class="method-desc">Store last 10 analyses (stored locally only)</span>
+            </span>
+          </label>
+        </div>
+
+        <div id="historySection" class="history-section" style="display: none;">
+          <h3>Recent Analyses</h3>
+          <div id="historyList" class="history-list">
+            <p class="empty-state">No analyses yet</p>
+          </div>
+          <button id="clearHistory" class="secondary-btn">Clear History</button>
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <section class="actions">
+        <button id="saveBtn" class="primary-btn">Save Settings</button>
+        <button id="resetBtn" class="secondary-btn">Reset to Defaults</button>
+      </section>
+
+      <!-- Save Status -->
+      <div id="saveStatus" class="save-status"></div>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a href="../assets/privacy-policy.html" target="_blank">Privacy Policy</a>
+        <span class="separator">•</span>
+        <a href="https://github.com/yourusername/linkedin-ai-detector" target="_blank">GitHub</a>
+        <span class="separator">•</span>
+        <span class="version">Version 1.0.0</span>
+      </div>
+      <p class="disclaimer">
+        This extension analyzes publicly visible content at your discretion. Results are estimations, not definitive proof. For personal use only.
+      </p>
+    </footer>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
