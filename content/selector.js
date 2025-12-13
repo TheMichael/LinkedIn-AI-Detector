@@ -143,10 +143,14 @@ function handleClick(e) {
       // Analyze the text (call analyzer.js function)
       if (typeof analyzeText === 'function') {
         const results = analyzeText(text);
-        // Send results to popup
-        chrome.runtime.sendMessage({
-          action: 'analyzeText',
-          results: results
+
+        // Store results in chrome.storage so popup can retrieve them
+        chrome.storage.local.set({ latestResults: results }, () => {
+          // Send results to popup (if it's still open)
+          chrome.runtime.sendMessage({
+            action: 'analyzeText',
+            results: results
+          });
         });
       } else {
         chrome.runtime.sendMessage({

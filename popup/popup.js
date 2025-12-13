@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSettings();
   setupEventListeners();
   checkLinkedInTab();
+  checkForResults();
 });
 
 // Setup event listeners
@@ -61,6 +62,18 @@ function checkLinkedInTab() {
         showError('This extension only works on LinkedIn. Please navigate to linkedin.com.');
         buttons.selectPost.disabled = true;
       }
+    }
+  });
+}
+
+// Check for stored results from recent analysis
+function checkForResults() {
+  chrome.storage.local.get(['latestResults'], (data) => {
+    if (data.latestResults) {
+      // Show results immediately
+      displayResults(data.latestResults);
+      // Clear the stored results
+      chrome.storage.local.remove(['latestResults']);
     }
   });
 }
