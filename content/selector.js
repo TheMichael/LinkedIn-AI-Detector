@@ -35,6 +35,7 @@ function createOverlay() {
     background: rgba(0, 0, 0, 0.3);
     z-index: 999999;
     cursor: crosshair;
+    pointer-events: none;
   `;
 
   // Add instruction text
