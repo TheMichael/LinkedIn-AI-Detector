@@ -151,6 +151,9 @@ function handleClick(e) {
             action: 'analyzeText',
             results: results
           });
+
+          // Show results directly on the page
+          showResultsOnPage(results);
         });
       } else {
         chrome.runtime.sendMessage({
@@ -292,4 +295,129 @@ function extractPostText(element) {
     .replace(/\t+/g, ' ');          // Remove tabs
 
   return text;
+}
+
+// Show results overlay on the page
+function showResultsOnPage(results) {
+  // Remove any existing results overlay
+  const existing = document.getElementById('linkedin-ai-detector-results');
+  if (existing) existing.remove();
+
+  const { likelihood, confidence, patterns } = results;
+
+  // Determine color based on likelihood
+  let color, emoji, label;
+  if (likelihood <= 33) {
+    color = '#4caf50';
+    emoji = '🟢';
+    label = 'Likely Human';
+  } else if (likelihood <= 66) {
+    color = '#ff9800';
+    emoji = '🟡';
+    label = 'Uncertain';
+  } else {
+    color = '#f44336';
+    emoji = '🔴';
+    label = 'Likely AI';
+  }
+
+  // Create results overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'linkedin-ai-detector-results';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    animation: slideIn 0.3s ease-out;
+  `;
+
+  // Add CSS animation
+  if (!document.getElementById('linkedin-ai-detector-animations')) {
+    const style = document.createElement('style');
+    style.id = 'linkedin-ai-detector-animations';
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Build HTML content
+  overlay.innerHTML = `
+    <div style="padding: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 600; color: #333;">Analysis Results</h3>
+        <button id="close-results" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666; line-height: 1;">&times;</button>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 16px;">
+        <div style="display: inline-block; padding: 24px; border-radius: 50%; background: linear-gradient(135deg, ${color} 0%, ${color}dd 100%); box-shadow: 0 4px 12px ${color}44;">
+          <div style="font-size: 36px; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">${likelihood}%</div>
+        </div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 600; color: ${color};">${emoji} ${label}</div>
+        <div style="margin-top: 4px; font-size: 12px; color: #666;">Confidence: ${confidence}</div>
+      </div>
+
+      ${patterns && patterns.length > 0 ? `
+        <div style="background: #f9f9f9; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+          <div style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 8px;">Detected Patterns:</div>
+          ${patterns.slice(0, 3).map(p => `
+            <div style="font-size: 11px; color: #333; padding: 4px 0; border-left: 2px solid ${color}; padding-left: 8px; margin-bottom: 4px;">• ${p}</div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      <div style="font-size: 10px; color: #999; text-align: center; padding-top: 8px; border-top: 1px solid #eee;">
+        Results are estimations, not definitive proof
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  // Close button handler
+  const closeBtn = document.getElementById('close-results');
+  closeBtn.addEventListener('click', () => {
+    overlay.style.animation = 'slideOut 0.3s ease-out';
+    setTimeout(() => overlay.remove(), 300);
+  });
+
+  // Add slide out animation
+  const styleSheet = document.getElementById('linkedin-ai-detector-animations');
+  if (styleSheet && !styleSheet.textContent.includes('slideOut')) {
+    styleSheet.textContent += `
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    `;
+  }
+
+  // Auto-dismiss after 10 seconds
+  setTimeout(() => {
+    if (document.getElementById('linkedin-ai-detector-results')) {
+      overlay.style.animation = 'slideOut 0.3s ease-out';
+      setTimeout(() => overlay.remove(), 300);
+    }
+  }, 10000);
 }

@@ -21,7 +21,18 @@ const highAIPhrases = [
   'holistic approach',
   'it\'s important to',
   'plays a crucial role',
-  'serves as a testament'
+  'serves as a testament',
+  'in today\'s fast-paced world',
+  'in this ever-evolving',
+  'moreover',
+  'furthermore',
+  'consequently',
+  'it\'s essential to',
+  'one cannot overstate',
+  'underscores the importance',
+  'serves to illustrate',
+  'pivotal moment',
+  'transformative journey'
 ];
 
 // Medium-confidence AI phrases
@@ -47,7 +58,20 @@ const mediumAIPhrases = [
   'value proposition',
   'best practices',
   'key takeaway',
-  'deep dive'
+  'deep dive',
+  'robust',
+  'seamless',
+  'dynamic',
+  'comprehensive',
+  'strategic',
+  'actionable insights',
+  'unlock potential',
+  'drive innovation',
+  'empower',
+  'scalable',
+  'sustainable growth',
+  'mission-critical',
+  'end-to-end'
 ];
 
 // Low-confidence indicators
@@ -61,6 +85,39 @@ const lowAIPhrases = [
   'grateful for',
   'delighted to',
   'excited to share'
+];
+
+// Hebrew high-confidence AI phrases
+const hebrewHighAIPhrases = [
+  'חשוב לציין',
+  'בסיכום',
+  'לסיכום',
+  'בנוסף לכך',
+  'יתרה מזאת',
+  'בעידן המודרני',
+  'בעולם המשתנה',
+  'חיוני להבין',
+  'ניתן לומר',
+  'מהווה נקודת מפנה',
+  'בהקשר זה',
+  'יש לקחת בחשבון'
+];
+
+// Hebrew medium-confidence AI phrases
+const hebrewMediumAIPhrases = [
+  'למנף',
+  'לייעל',
+  'חדשני',
+  'פורץ דרך',
+  'מהפכני',
+  'אקוסיסטם',
+  'סינרגיה',
+  'שינוי פרדיגמה',
+  'פתרון יצירתי',
+  'ערך מוסף',
+  'מיטבי',
+  'אסטרטגי',
+  'מקיף'
 ];
 
 /**
@@ -144,6 +201,7 @@ function calculatePhraseScore(text) {
   let mediumCount = 0;
   let lowCount = 0;
 
+  // Check English phrases
   highAIPhrases.forEach(phrase => {
     if (textLower.includes(phrase.toLowerCase())) {
       highCount++;
@@ -159,6 +217,19 @@ function calculatePhraseScore(text) {
   lowAIPhrases.forEach(phrase => {
     if (textLower.includes(phrase.toLowerCase())) {
       lowCount++;
+    }
+  });
+
+  // Check Hebrew phrases (case-sensitive for Hebrew)
+  hebrewHighAIPhrases.forEach(phrase => {
+    if (text.includes(phrase)) {
+      highCount++;
+    }
+  });
+
+  hebrewMediumAIPhrases.forEach(phrase => {
+    if (text.includes(phrase)) {
+      mediumCount++;
     }
   });
 
