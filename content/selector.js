@@ -6,12 +6,16 @@ let currentHighlight = null;
 
 // Listen for messages from popup
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Selector.js received message:', message);
   if (message.action === 'startPicker') {
+    console.log('Activating element picker...');
     activateElementPicker();
     sendResponse({ status: 'activated' });
   }
   return true;
 });
+
+console.log('LinkedIn AI Detector - selector.js loaded successfully');
 
 // Activate element picker
 function activateElementPicker() {
