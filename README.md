@@ -265,28 +265,6 @@ cd LinkedIn-AI-Detector
 # 4. Expected: AI posts score 60-90%, human posts score 10-40%
 ```
 
-### Contributing
-
-Contributions welcome! Areas needing help:
-
-**High Priority:**
-- [ ] Improve detection accuracy with more AI phrase patterns
-- [ ] Add support for more languages (Spanish, French, German, etc.)
-- [ ] Reduce false positives for naturally structured human writing
-
-**Nice to Have:**
-- [ ] Keyboard shortcuts (analyze post under cursor)
-- [ ] Batch analysis mode
-- [ ] Export results to CSV
-- [ ] Visual badges overlaid on analyzed posts
-
-**Contribution Process:**
-1. Fork repo
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
 ---
 
 ## FAQ
