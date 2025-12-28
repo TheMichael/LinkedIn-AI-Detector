@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSettings();
   setupEventListeners();
   checkLinkedInTab();
+  checkForResults();
 });
 
 // Setup event listeners
@@ -65,6 +66,18 @@ function checkLinkedInTab() {
   });
 }
 
+// Check for stored results from recent analysis
+function checkForResults() {
+  chrome.storage.local.get(['latestResults'], (data) => {
+    if (data.latestResults) {
+      // Show results immediately
+      displayResults(data.latestResults);
+      // Clear the stored results
+      chrome.storage.local.remove(['latestResults']);
+    }
+  });
+}
+
 // State management functions
 function setState(state) {
   // Hide all states
@@ -84,14 +97,19 @@ function resetToInitial() {
 
 // Start element picker
 function startPicker() {
+  console.log('Start picker button clicked');
   buttons.selectPost.disabled = true;
   setState('selection');
 
   // Send message to content script to activate picker
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    console.log('Active tabs:', tabs);
     if (tabs[0]) {
+      console.log('Sending startPicker message to tab:', tabs[0].id);
       chrome.tabs.sendMessage(tabs[0].id, { action: 'startPicker' }, (response) => {
+        console.log('Response from content script:', response);
         if (chrome.runtime.lastError) {
+          console.error('Error:', chrome.runtime.lastError);
           showError('Failed to activate picker. Please refresh the LinkedIn page and try again.');
           resetToInitial();
         }
