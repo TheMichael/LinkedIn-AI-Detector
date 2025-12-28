@@ -67,7 +67,7 @@ Plus confidence level, detected patterns, and optional detailed breakdown.
 
 ### Privacy & Compliance
 
-✅ Chrome Web Store compliant (100% client-side, minimal permissions)
+✅ 100% client-side processing with minimal permissions
 ✅ LinkedIn ToS respectful (user-initiated, no scraping, publicly visible content only)
 ✅ Zero data collection or transmission
 ✅ Open source for transparency
@@ -96,8 +96,6 @@ This creates required PNG files: `icon16.png`, `icon48.png`, `icon128.png`
 
 - [ ] Test on various LinkedIn posts
 - [ ] Fine-tune detection weights based on results
-- [ ] Create promotional screenshots for Chrome Web Store
-- [ ] Submit to Chrome Web Store (pending)
 
 ### Demo
 

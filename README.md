@@ -3,7 +3,7 @@
 **Spot AI-generated content on LinkedIn. Instantly. Privately.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue.svg)](https://chrome.google.com/webstore)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue.svg)](https://github.com/TheMichael/LinkedIn-AI-Detector)
 
 ---
 
@@ -100,10 +100,7 @@ LinkedIn AI Detector gives you instant, private AI detection right in your brows
 
 ## Installation
 
-### Option 1: Chrome Web Store (Recommended)
-*Coming soon - pending review*
-
-### Option 2: Install from Source
+### Install from Source
 
 ```bash
 # Clone the repository
@@ -326,7 +323,6 @@ A: Use it as one data point, not a definitive test. If a candidate's thought lea
 - [ ] Keyboard shortcuts
 - [ ] Improved Hebrew language support
 - [ ] Performance optimizations
-- [ ] Chrome Web Store launch
 
 ### v2.0 (Future)
 - [ ] Batch analysis mode (analyze multiple posts)

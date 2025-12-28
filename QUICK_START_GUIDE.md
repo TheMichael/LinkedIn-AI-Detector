@@ -376,32 +376,6 @@ Look for messages from the extension
    - Have an idea? Suggest a feature
    - Want to improve? Submit a PR!
 
-### Preparing for Chrome Web Store
-
-If you want to publish this:
-
-1. **Create Professional Icons:**
-   - Design clean, recognizable icons
-   - Export in all required sizes
-
-2. **Take Screenshots:**
-   - 1280x800 or 640x400
-   - Show: popup, picker, results, settings
-
-3. **Create Promotional Images:**
-   - Small tile: 440x280px
-   - Large tile: 920x680px
-   - Marquee: 1400x560px
-
-4. **Write Store Listing:**
-   - Use the description in README.md
-   - Highlight privacy and features
-
-5. **Submit:**
-   - Pay $5 one-time developer fee
-   - Upload extension
-   - Wait for review (~1-3 days)
-
 ---
 
 ## Support
