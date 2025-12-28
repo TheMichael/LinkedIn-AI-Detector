@@ -91,8 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Patch**: Bug fixes and minor improvements
 
 ### Release Channels
-- **Stable**: Chrome Web Store releases
-- **Development**: GitHub releases
+- **Stable**: GitHub releases
 - **Beta**: Pre-release versions (tagged with -beta suffix)
 
 ## Upgrade Notes
@@ -119,14 +118,12 @@ Before releasing a new version:
 - [ ] Verify privacy policy is current
 - [ ] Update README if needed
 - [ ] Create Git tag with version number
-- [ ] Build and test .crx file
-- [ ] Submit to Chrome Web Store (if stable)
 - [ ] Create GitHub release with notes
 
 ## Feedback
 
 Found a bug or have a feature request?
-[Open an issue on GitHub](https://github.com/yourusername/linkedin-ai-detector/issues)
+[Open an issue on GitHub](https://github.com/TheMichael/LinkedIn-AI-Detector/issues)
 
 ---
 
