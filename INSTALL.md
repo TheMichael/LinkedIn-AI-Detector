@@ -7,19 +7,9 @@ This guide will help you install the LinkedIn AI Post Detector Chrome extension.
 - Google Chrome (version 88 or later) or any Chromium-based browser (Edge, Brave, etc.)
 - Basic command line knowledge (for development installation)
 
-## Installation Methods
+## Installation Method
 
-### Method 1: Chrome Web Store (Recommended - Coming Soon)
-
-*The extension is pending Chrome Web Store review. Check back soon!*
-
-Once published:
-1. Visit the Chrome Web Store page
-2. Click "Add to Chrome"
-3. Confirm permissions
-4. Extension installed!
-
-### Method 2: Load Unpacked (For Development/Testing)
+### Load Unpacked Extension
 
 #### Step 1: Download the Extension
 
@@ -30,8 +20,8 @@ Once published:
 
 **Option B: Clone with Git**
 ```bash
-git clone https://github.com/yourusername/linkedin-ai-detector.git
-cd linkedin-ai-detector
+git clone https://github.com/TheMichael/LinkedIn-AI-Detector.git
+cd LinkedIn-AI-Detector
 ```
 
 #### Step 2: Create Icon Files
@@ -161,11 +151,7 @@ You should now have:
 
 ## Updating the Extension
 
-### From Chrome Web Store
-- Extensions update automatically
-- You'll see a notification when updates are available
-
-### Development Installation
+### Update Steps
 1. Pull latest changes from GitHub
    ```bash
    git pull origin main
@@ -179,13 +165,7 @@ You should now have:
 
 ## Uninstalling
 
-### Chrome Web Store Version
-1. Go to `chrome://extensions/`
-2. Find "LinkedIn AI Post Detector"
-3. Click "Remove"
-4. Confirm removal
-
-### Development Version
+### Uninstall Steps
 1. Go to `chrome://extensions/`
 2. Find "LinkedIn AI Post Detector"
 3. Click "Remove"
