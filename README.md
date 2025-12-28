@@ -107,7 +107,7 @@ LinkedIn AI Detector gives you instant, private AI detection right in your brows
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/LinkedIn-AI-Detector.git
+git clone https://github.com/TheMichael/LinkedIn-AI-Detector.git
 cd LinkedIn-AI-Detector
 
 # Load extension in Chrome
@@ -255,7 +255,7 @@ linkedin-ai-detector/
 
 ```bash
 # Clone
-git clone https://github.com/yourusername/LinkedIn-AI-Detector.git
+git clone https://github.com/TheMichael/LinkedIn-AI-Detector.git
 cd LinkedIn-AI-Detector
 
 # No build step required - pure vanilla JS
@@ -351,7 +351,7 @@ A: Use it as one data point, not a definitive test. If a candidate's thought lea
 
 ## Support & Contact
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/LinkedIn-AI-Detector/issues)
+- **Issues:** [GitHub Issues](https://github.com/TheMichael/LinkedIn-AI-Detector/issues)
 - **Privacy Policy:** [View Policy](assets/privacy-policy.html)
 - **License:** [MIT License](LICENSE)
 
